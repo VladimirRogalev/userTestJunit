@@ -4,10 +4,12 @@ public class User {
 
 	private String email;
 	private String password;
+	private String firstAndLastName;
 
-	public User(String email, String password) {
+	public User(String email, String password, String firstAndLastName) {
 		setEmail(email);
 		setPassword(password);
+		setFirstAndLastName(firstAndLastName);
 
 	}
 
@@ -106,9 +108,42 @@ public class User {
 
 	}
 
+	public String getFirstAndLastName() {
+		return firstAndLastName;
+	}
+
+	public void setFirstAndLastName(String firstAndLastName) {
+		if (isValidFirstAndLastName(firstAndLastName)) {
+			this.firstAndLastName = firstAndLastName;
+		} else {
+			System.out.println(firstAndLastName + " is not valid!");
+		}
+
+	}
+
+	private boolean isValidFirstAndLastName(String firstAndLastName) {
+
+		if (firstAndLastName.length() <= 1 || firstAndLastName.length() > 37) {
+			return false;
+		}
+		char a = firstAndLastName.charAt(0);
+		char b = firstAndLastName.charAt(firstAndLastName.length() - 1);
+		if (!(Character.isAlphabetic(a) && Character.isAlphabetic(b))) {
+			return false;
+		}
+		for (int i = 0; i < firstAndLastName.length() - 1; i++) {
+			char c = firstAndLastName.charAt(i);
+			if ((c == '@' || c == '.' || c == '_' || Character.isDigit(c))) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", password=" + password + "]";
+		return "User [email=" + email + ", password=" + password + " firstAndLastName = " + firstAndLastName + "]";
 	}
 
 }

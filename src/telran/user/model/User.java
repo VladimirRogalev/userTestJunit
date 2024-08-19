@@ -126,16 +126,22 @@ public class User {
 		if (firstAndLastName.length() <= 1 || firstAndLastName.length() > 37) {
 			return false;
 		}
+		if (firstAndLastName.contains("  ")) {
+			return false;
+		}
 		char a = firstAndLastName.charAt(0);
 		char b = firstAndLastName.charAt(firstAndLastName.length() - 1);
 		if (!(Character.isAlphabetic(a) && Character.isAlphabetic(b))) {
 			return false;
 		}
-		for (int i = 0; i < firstAndLastName.length() - 1; i++) {
+		for (int i = 1; i < firstAndLastName.length() - 1; i++) {
 			char c = firstAndLastName.charAt(i);
-			if ((c == '@' || c == '.' || c == '_' || Character.isDigit(c))) {
+			if (!(c >= 'a' && c <= 'z') && !(c >= 'A' && c <= 'Z') && !(c >= 'а' && c <= 'я') && !(c >= 'А' && c <= 'Я')
+					&& !(c == '-') && !(c == ' ')) {
 				return false;
 			}
+
+//	
 		}
 
 		return true;

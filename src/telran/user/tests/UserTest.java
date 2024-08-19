@@ -41,7 +41,13 @@ class UserTest {
 		String invalidFirstAndLastName = "Vlad1mir";
 		user.setFirstAndLastName(invalidFirstAndLastName);
 		assertEquals(firstAndLastName, user.getFirstAndLastName());
-		invalidFirstAndLastName = "Vl@dimir Rogalev";
+		invalidFirstAndLastName = "@Vl@dimir Rogalev";
+		user.setFirstAndLastName(invalidFirstAndLastName);
+		assertEquals(firstAndLastName, user.getFirstAndLastName());
+		invalidFirstAndLastName = "Vlad  ir";
+		user.setFirstAndLastName(invalidFirstAndLastName);
+		assertEquals(firstAndLastName, user.getFirstAndLastName());
+		invalidFirstAndLastName = "Vlaדסכדגדגדגir";
 		user.setFirstAndLastName(invalidFirstAndLastName);
 		assertEquals(firstAndLastName, user.getFirstAndLastName());
 
